@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 public class CategoryMapperTest {
 
     public static final String NAME = "Joe";
-    public static final UUID ID = UUID.randomUUID();
+    public static final String ID = UUID.randomUUID().toString();
 
     CategoryMapper categoryMapper = CategoryMapper.INSTANCE;
 
