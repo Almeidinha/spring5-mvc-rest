@@ -11,4 +11,5 @@ public interface CustomerService {
     CustomerDTO getCustomerById(String id);
     CustomerDTO createNewCustomer(CustomerDTO customerDTO);
     CustomerDTO updateCustomerByDto(String id, CustomerDTO customerDTO);
+    CustomerDTO patchCustomer(String id, CustomerDTO customerDTO);
 }
