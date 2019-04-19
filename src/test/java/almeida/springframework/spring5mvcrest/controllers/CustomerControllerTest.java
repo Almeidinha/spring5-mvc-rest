@@ -82,25 +82,27 @@ public class CustomerControllerTest {
 
     @Test
     public void createNewCustomer() throws Exception {
+        String id = UUID.randomUUID().toString();
         //given
         CustomerDTO customer = new CustomerDTO();
         customer.setFirstname("Fred");
         customer.setLastname("Flintstone");
 
         CustomerDTO returnDTO = new CustomerDTO();
+        returnDTO.setId(id);
         returnDTO.setFirstname(customer.getFirstname());
         returnDTO.setLastname(customer.getLastname());
-        returnDTO.setCustomerurl("/api/v1/customers/1");
+        returnDTO.setCustomerurl(CustomerController.BASE_URL + "/" + id);
 
         when(customerService.createNewCustomer(customer)).thenReturn(returnDTO);
 
         //when/then
-        mockMvc.perform(post("/api/v1/customers/")
+        mockMvc.perform(post(CustomerController.BASE_URL)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(asJsonString(customer)))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.firstname", equalTo("Fred")))
-                .andExpect(jsonPath("$.customer_url", equalTo("/api/v1/customers/1")));
+                .andExpect(jsonPath("$.customer_url", equalTo(CustomerController.BASE_URL + "/" + id)));
     }
     @Test
     public void testUpdateCustomer() throws Exception {
@@ -113,23 +115,23 @@ public class CustomerControllerTest {
         CustomerDTO returnDTO = new CustomerDTO();
         returnDTO.setFirstname(customer.getFirstname());
         returnDTO.setLastname(customer.getLastname());
-        returnDTO.setCustomerurl("/api/v1/customers/" + id);
+        returnDTO.setCustomerurl(CustomerController.BASE_URL + "/" + id);
 
         when(customerService.updateCustomerByDto(anyString(), any(CustomerDTO.class))).thenReturn(returnDTO);
 
         //when/then
-        mockMvc.perform(put("/api/v1/customers/" + id)
+        mockMvc.perform(put(CustomerController.BASE_URL + "/" + id)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(asJsonString(customer)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.firstname", equalTo("Fred")))
                 .andExpect(jsonPath("$.lastname", equalTo("Flintstone")))
-                .andExpect(jsonPath("$.customer_url", equalTo("/api/v1/customers/" + id)));
+                .andExpect(jsonPath("$.customer_url", equalTo(CustomerController.BASE_URL + "/" + id)));
     }
 
     @Test
     public void testDeleteCustomer() throws Exception {
-        mockMvc.perform(delete("/api/v1/customers/" + UUID.randomUUID().toString())
+        mockMvc.perform(delete(CustomerController.BASE_URL + "/" + UUID.randomUUID().toString())
         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
 

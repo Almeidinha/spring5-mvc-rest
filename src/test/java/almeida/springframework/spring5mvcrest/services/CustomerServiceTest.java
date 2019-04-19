@@ -2,6 +2,7 @@ package almeida.springframework.spring5mvcrest.services;
 
 import almeida.springframework.spring5mvcrest.api.vi.mapper.CustomerMapper;
 import almeida.springframework.spring5mvcrest.api.vi.model.CustomerDTO;
+import almeida.springframework.spring5mvcrest.controllers.CustomerController;
 import almeida.springframework.spring5mvcrest.domain.Customer;
 import almeida.springframework.spring5mvcrest.repositories.CustomerRepository;
 import org.junit.Before;
@@ -93,7 +94,7 @@ public class CustomerServiceTest {
 
         //then
         assertEquals(customerDTO.getFirstname(), savedDto.getFirstname());
-        assertEquals("/api/v1/customer/" + id, savedDto.getCustomerurl());
+        assertEquals(CustomerController.BASE_URL + "/" + id, savedDto.getCustomerurl());
     }
 
     @Test
@@ -116,7 +117,7 @@ public class CustomerServiceTest {
 
         //then
         assertEquals(customerDTO.getFirstname(), savedDto.getFirstname());
-        assertEquals("/api/v1/customer/" + id, savedDto.getCustomerurl());
+        assertEquals(CustomerController.BASE_URL + "/" + id, savedDto.getCustomerurl());
     }
 
     @Test
