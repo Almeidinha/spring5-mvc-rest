@@ -16,7 +16,7 @@ import java.util.UUID;
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class CustomerServiceTest {
 
@@ -117,6 +117,14 @@ public class CustomerServiceTest {
         //then
         assertEquals(customerDTO.getFirstname(), savedDto.getFirstname());
         assertEquals("/api/v1/customer/" + id, savedDto.getCustomerurl());
+    }
+
+    @Test
+    public void deleteCustomerById() throws Exception {
+        String id = UUID.randomUUID().toString();
+
+        customerRepository.deleteById(id);
+        verify(customerRepository, times(1)).deleteById(anyString());
     }
 
 }
