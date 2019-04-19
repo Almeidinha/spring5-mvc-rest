@@ -40,7 +40,12 @@ public class CustomerServiceImpl implements CustomerService {
     public CustomerDTO getCustomerById(String id) {
         return customerRepository.findById(id)
                 .map(customerMapper::customerToCustomerDTO)
-                .orElseThrow(RuntimeException::new);
+                .map(customerDTO -> {
+                    //set API URL
+                    customerDTO.setCustomerurl("/api/v1/customer/" + id);
+                    return customerDTO;
+                })
+                .orElseThrow(RuntimeException::new); //todo implement better exception handling
     }
 
     @Override
