@@ -37,7 +37,7 @@ public class CustomerController {
     }
 
     @PostMapping //@RequestBody: Spring looks at the body request and tryes to create a customerDto from it
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.CREATED)
     public CustomerDTO createNewCustomer(@RequestBody CustomerDTO customerDTO){
         return customerService.createNewCustomer(customerDTO);
     }
