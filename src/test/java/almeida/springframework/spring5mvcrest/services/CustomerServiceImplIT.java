@@ -6,6 +6,7 @@ import almeida.springframework.spring5mvcrest.bootstrap.Bootstrap;
 import almeida.springframework.spring5mvcrest.domain.Customer;
 import almeida.springframework.spring5mvcrest.repositories.CategoryRepository;
 import almeida.springframework.spring5mvcrest.repositories.CustomerRepository;
+import almeida.springframework.spring5mvcrest.repositories.VendorRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,6 +30,8 @@ public class CustomerServiceImplIT {
     CustomerRepository customerRepository;
     @Autowired
     CategoryRepository categoryRepository;
+    @Autowired
+    VendorRepository vendorRepository;
 
     CustomerService customerService;
 
@@ -38,7 +41,7 @@ public class CustomerServiceImplIT {
         System.out.println(customerRepository.findAll().size());
 
         //setup data for testing
-        Bootstrap bootstrap = new Bootstrap(categoryRepository, customerRepository);
+        Bootstrap bootstrap = new Bootstrap(categoryRepository, customerRepository, vendorRepository);
         bootstrap.run(); //load data
 
         customerService = new CustomerServiceImpl(CustomerMapper.INSTANCE, customerRepository);

@@ -1,7 +1,7 @@
-package almeida.springframework.spring5mvcrest.controllers;
+package almeida.springframework.spring5mvcrest.controllers.v1;
 
 import almeida.springframework.spring5mvcrest.api.vi.model.CustomerDTO;
-import almeida.springframework.spring5mvcrest.controllers.v1.CustomerController;
+import almeida.springframework.spring5mvcrest.controllers.RestResponseEntityExceptionHandler;
 import almeida.springframework.spring5mvcrest.services.CustomerService;
 import almeida.springframework.spring5mvcrest.services.ResourceNotFoundException;
 import org.junit.Before;
@@ -32,6 +32,7 @@ public class CustomerControllerTest {
 
     private static final String FIRST_NAME = "Mike";
     private static final String LAST_NAME = "Almeida";
+    private static final String ID = UUID.randomUUID().toString();
 
     @Mock
     CustomerService customerService;
@@ -74,10 +75,11 @@ public class CustomerControllerTest {
         CustomerDTO customerDTO = new CustomerDTO();
         customerDTO.setFirstname(FIRST_NAME);
         customerDTO.setLastname(LAST_NAME);
+        customerDTO.setId(ID);
 
         when(customerService.getCustomerById(anyString())).thenReturn(customerDTO);
 
-        mockMvc.perform(get("/api/v1/customers/" + FIRST_NAME)
+        mockMvc.perform(get(CustomerController.BASE_URL + "/" + ID)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.firstname", equalTo(FIRST_NAME)));
@@ -107,6 +109,8 @@ public class CustomerControllerTest {
                 .andExpect(jsonPath("$.firstname", equalTo("Fred")))
                 .andExpect(jsonPath("$.customer_url", equalTo(CustomerController.BASE_URL + "/" + id)));
     }
+
+
     @Test
     public void testUpdateCustomer() throws Exception {
         String id = UUID.randomUUID().toString();

@@ -1,6 +1,7 @@
-package almeida.springframework.spring5mvcrest.controllers;
+package almeida.springframework.spring5mvcrest.controllers.v1;
 
 import almeida.springframework.spring5mvcrest.api.vi.model.CategoryDTO;
+import almeida.springframework.spring5mvcrest.controllers.RestResponseEntityExceptionHandler;
 import almeida.springframework.spring5mvcrest.controllers.v1.CategoryController;
 import almeida.springframework.spring5mvcrest.services.CategoryService;
 import almeida.springframework.spring5mvcrest.services.ResourceNotFoundException;
