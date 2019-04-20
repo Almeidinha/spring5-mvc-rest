@@ -1,6 +1,7 @@
 package almeida.springframework.spring5mvcrest.controllers;
 
 import almeida.springframework.spring5mvcrest.api.vi.model.CustomerDTO;
+import almeida.springframework.spring5mvcrest.controllers.v1.CustomerController;
 import almeida.springframework.spring5mvcrest.services.CustomerService;
 import almeida.springframework.spring5mvcrest.services.ResourceNotFoundException;
 import org.junit.Before;
@@ -19,7 +20,6 @@ import java.util.UUID;
 import static almeida.springframework.spring5mvcrest.controllers.AbstractRestControllerTest.asJsonString;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
-import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.verify;

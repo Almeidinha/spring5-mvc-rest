@@ -2,7 +2,7 @@ package almeida.springframework.spring5mvcrest.services;
 
 import almeida.springframework.spring5mvcrest.api.vi.mapper.CustomerMapper;
 import almeida.springframework.spring5mvcrest.api.vi.model.CustomerDTO;
-import almeida.springframework.spring5mvcrest.controllers.CustomerController;
+import almeida.springframework.spring5mvcrest.controllers.v1.CustomerController;
 import almeida.springframework.spring5mvcrest.domain.Customer;
 import almeida.springframework.spring5mvcrest.repositories.CustomerRepository;
 import org.springframework.stereotype.Service;
