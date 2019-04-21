@@ -3,9 +3,11 @@ package almeida.springframework.spring5mvcrest.controllers.v1;
 import almeida.springframework.spring5mvcrest.api.vi.model.VendorsDTO;
 import almeida.springframework.spring5mvcrest.api.vi.model.VendorsListDTO;
 import almeida.springframework.spring5mvcrest.services.VendorService;
+import io.swagger.annotations.Api;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+@Api(description = "This is the Vendor Controller !!!")
 @RestController
 @RequestMapping(VendorController.BASE_URL)
 public class VendorController {

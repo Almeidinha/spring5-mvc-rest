@@ -3,9 +3,11 @@ package almeida.springframework.spring5mvcrest.controllers.v1;
 import almeida.springframework.spring5mvcrest.api.vi.model.CustomerDTO;
 import almeida.springframework.spring5mvcrest.api.vi.model.CustomerListDTO;
 import almeida.springframework.spring5mvcrest.services.CustomerService;
+import io.swagger.annotations.Api;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+@Api(description = "This is the Customer Controller !!!")
 @RestController
 @RequestMapping(CustomerController.BASE_URL)
 public class CustomerController {
